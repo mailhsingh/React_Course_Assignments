@@ -1,0 +1,25 @@
+ How to remove double console.logs from React ?
+
+Check for Strict Mode: If you're using React’s Strict Mode (<React.StrictMode>), it intentionally calls components twice in development to help identify side effects. This won’t happen in production builds. If you want to confirm if this is the cause, try temporarily removing Strict Mode.
+
+// Remove or comment out <React.StrictMode>
+<React.StrictMode>
+    <App />
+</React.StrictMode>
+
+Check for Multiple Renders: Ensure that your component isn’t unintentionally rendering multiple times. This can happen if:
+
+You have a parent component that re-renders frequently.
+You are calling the component multiple times in your JSX.
+
+Check for Hot Module Replacement (HMR): If you're using a development server with HMR (like Create React App), it may cause components to render twice while hot reloading. This is normal during development.
+
+Review Your Component Logic: Look through your component’s lifecycle or hooks to make sure you’re not inadvertently calling console.log in places that execute multiple times, such as within useEffect without proper dependency arrays.
+
+
+useEffect(() => {
+    console.log("This runs only once on mount");
+}, []); // Make sure you have an empty dependency array if you want it to run once.
+Check for Duplicate Components: Make sure the component that contains the console.log isn't duplicated in your JSX.
+
+Using React DevTools: You can also use React DevTools to inspect your component tree to see if the component is indeed rendered more than once.
