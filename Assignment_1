@@ -1,0 +1,9 @@
+If we delete node_modules. How to run our app again successfully ?
+
+Open your terminal and change to the directory of your project.
+cd /path/to/your/project
+Run either of the following commands, depending on whether you're using npm
+npm install
+After the dependencies have been reinstalled, you can start your application with:
+npm start
+If you encounter any errors, make sure to check your package.json for any specific versions or peer dependencies that might need addressing.
